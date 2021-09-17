@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Frontend Mentor | Calculator app</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;300;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+<div class="calculator-body">
+  <div class="heading">
+    <div class="calculator-title">calc</div>
+    <div class="theme-selector">
+      <div class="theme-selector-title">THEME</div>
+        <div class="theme-box">
+          <div class="theme-selector-number">123</div>
+          <input type="range" id="skin-selector" min="0" max="2" value="0"> 
+        </div>
+    </div>
+  </div>
+  <div class="number-display">
+    <div class="number-output">0</div>
+  </div>
+  <div class="button-grid">
+    <button type="button" value="7" class="digit">7</button>
+    <button type="button" value="8" class="digit">8</button>
+    <button type="button" value="9" class="digit">9</button>
+    <button type="button" class="delete special-operation">DEL</button>
+    <button type="button" value="4" class="digit">4</button>
+    <button type="button" value="5" class="digit">5</button>
+    <button type="button" value="6" class="digit">6</button>
+    <button type="button" class="operation">+</button>
+    <button type="button" value="1" class="digit">1</button>
+    <button type="button" value="2" class="digit">2</button>
+    <button type="button" value="3" class="digit">3</button>
+    <button type="button" class="operation">-</button>
+    <button type="button" value="." class="digit">.</button>
+    <button type="button" value="0" class="digit">0</button>
+    <button type="button" class="operation">/</button>
+    <button type="button" class="operation">x</button>
+    <button type="button" class="special-operation reset span-two">RESET</button>
+    <button type="button" class="equals span-two">=</button>
+  </div>
+</div>
+</body>
+</html>
