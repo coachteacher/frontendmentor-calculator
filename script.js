@@ -53,114 +53,46 @@ window.onload = function(){
         themeSlider.addEventListener('mousemove', themeSelect);
         themeSlider.addEventListener('change', themeSelect);
 
-const digits = document.querySelectorAll('.digit');
-const display = document.querySelector('number-output');
-const operation = document.querySelectorAll('.operation');
-const del = document.querySelector('.delete');
-const reset = document.querySelector('.reset');
-const equals = document.querySelector('.equals');
-let statement = [];
 
-/*
-function appendNumber(e){
-    number = e.target.value;
-    if(display.value === '0' && number === '0'){
-        display.innerText = '0';
-    }else if(display.value === '0' && number === '.'){
-        display.innerText = '0.';
-    }else{
-        display.innerText += number; 
-    }
-}
+//calculator functionality  
+const calculator = document.querySelector('.calculator-body');
+const keys = document.querySelectorAll('.key');
+const operations = document.querySelectorAll('.operator');
+const display = document.querySelector('.number-output');
 
-function captureMath(e){
-    operator = e.target.value;
-    if( )
-}
+        keys.forEach(k =>{
+            k.addEventListener('click', e =>{
+              //variables
+              const key = e.target;
+              const keyValue = key.value;
+              const displayValue = display.innerText;  
+              const previousValue = displayValue;
+              let firstNumber = ''
 
-digits.forEach(digt => {
-    btn.addEventListener('click', appendNumber);
-})
-
-operation.forEach(btn => {
-    btn.addEventListener('click', captureMath)
-})
-
-
-function handleClickBtn(value){
-    if(isNaN(+value)){
-        handleOperators(value);
-        previousOperator = value;
-    }else{
-        handleNumber(value);
-    }
-    display.innterText = buffer != '0' ? buffer : tracker;
-}
-
-function handleOperators(symbol){
-    if(symbol === 'RESET'){
-        buffer = '0';
-        tracker = 0;
-    }else if(symbol === 'DEL'){
-        buffer = buffer.substring(0, buffer.length - 1);
-    }else if(symbol === '+' || symbol === '=' || symbol === 'x' || symbol === '/'){
-        handleMath(previousOperator);
-    }
-}
-
-function handleNumber(numberStr){
-    if(buffer === '0'){
-        buffer = numberStr;
-    }else{
-        buffer += numberStr;
-    }
-}
-
-function handleMath(symbol){
-    let integerBuffer = +buffer;
-    if(buffer === '0'){
-        return;
-    }
-    if(tracker === 0){
-        tracker = integerBuffer;
-    }else{
-        alterOperator(integerBuffer);
-    }
-    buffer = '0';
-}
-
-function alterOperator(int){
-    if(previousOperator === '+'){
-        tracker += int;
-    }else if(previousOperator === '-'){
-        tracker -= int;
-    }else if(previousOperator === '/'){
-        tracker /= int;
-    }else if(previousOperator === 'x'){
-        tracker *= int;
-    }
-}
-
-function main(value){
-    handleClickBtn(value);
-}
+              //numbers displayed
+              if(e.target.classList.contains('digit')){
+                  if(displayValue === '0'){
+                      display.innerText = keyValue;
+                  }else {
+                      display.innerText = displayValue + keyValue;
+                  }
+                }
+              //handle the operators  
+              if(e.target.classList.contains('operator')){ 
+                  firstNumber = displayValue;
+                  display.innerText = keyValue;
+                  
+              }
+              })
+          })
+        /* 
+        1. only one decimal point per number
+        2. only one operator per operation
+        3. comma at char 4 when value.length >=4, comma at char 8 while value.length >=7 etc. --> but what about decimal places?
+        4. reset = clear info displayValue = 0
+        5. = calculates total, but any operator acts as = once an operator has been selected.
 
 
-
-const screenOutput = document.getElementById('number-output');
-let screenNum = screenOutput.innerText;
-let resultArr = [];
-let result = 0;
-const del = document.querySelector('.delete');
-
-del.addEventListener('click', () => {
-    if(screenNum !=0){
-        let temp = screenNum.toString();
-            if(temp.length == 1){
-                screenNum = 0;
-            }
-    }
-})
 */
 
 };
