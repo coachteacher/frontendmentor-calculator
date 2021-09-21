@@ -1,4 +1,4 @@
-            /* variables */
+      /* variables */
       :root{
         /* theme 1 */
           --font-color: white;
@@ -241,6 +241,14 @@
         letter-spacing: 25px;
         font-size: 10pt;
       }
+
+      /*Psuedo Class*/
+      button:focus, button:hover{
+          transform: translateY(7px);
+          border-bottom: none;
+          height: 67px;;
+          cursor: pointer;
+
       /* input */
       input[type=range] {
         -webkit-appearance: none;
