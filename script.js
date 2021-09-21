@@ -60,36 +60,59 @@ const keys = document.querySelectorAll('.key');
 const operations = document.querySelectorAll('.operator');
 const display = document.querySelector('.number-output');
 
-        keys.forEach(k =>{
-            k.addEventListener('click', e =>{
-              //variables
-              const key = e.target;
-              const keyValue = key.value;
-              const displayValue = display.innerText;  
-              const previousValue = displayValue;
-              let firstNumber = ''
+keys.forEach(k =>{
+    k.addEventListener('click', e =>{
+      //variables
+      const key = e.target;
+      const keyValue = key.value;
+      const displayValue = display.innerText; 
+      const currentValue = displayValue;
+      let mathArr = [];
 
-              //numbers displayed
-              if(e.target.classList.contains('digit')){
-                  if(displayValue === '0'){
-                      display.innerText = keyValue;
-                  }else {
-                      display.innerText = displayValue + keyValue;
-                  }
-                }
-              //handle the operators  
-              if(e.target.classList.contains('operator')){ 
-                  firstNumber = displayValue;
-                  display.innerText = keyValue;
-                  
-              }
-              })
-          })
+      //numbers displayed
+      if(e.target.classList.contains('digit')){
+        if(displayValue === '0'){
+            display.innerText = keyValue;
+        }else {
+            display.innerText = displayValue + keyValue;
+        }
+      }
+      //handle the operators  
+      if(e.target.classList.contains('operator')){ 
+          mathArr.push(displayValue); 
+          mathArr.push(e.target.innerText);
+          console.log(mathArr);
+          display.innerText = keyValue;
+      }
+     
+      if(e.target.classList.contains('delete')){
+        display.innerText = displayValue.substring(0, [displayValue.length -1]);
+      }
+
+      if(e.target.classList.contains('reset')){
+        display.innerText = '0';
+        mathArr = [];
+        console.log(mathArr);
+      }
+      
+      if(e.target.classList.contains('equals')){
+        switch(mathArr[1]){
+          
+        }
+      }
+      
+
+      })
+      
+
+  })
+
+          
+
         /* 
         1. only one decimal point per number
         2. only one operator per operation
         3. comma at char 4 when value.length >=4, comma at char 8 while value.length >=7 etc. --> but what about decimal places?
-        4. reset = clear info displayValue = 0
         5. = calculates total, but any operator acts as = once an operator has been selected.
 
 
