@@ -98,24 +98,24 @@ const calculator = document.querySelector('.calculator-body');
                 
                 if(e.target.classList.contains('equals')){
                   mathArr.push(displayValue);
-                  switch(mathArr[1]){
+                  switch(mathArr[(mathArr.length -2)]){
                     case "+":
-                      let addition = Number(mathArr[0]) + Number([mathArr.length - 1]);
+                      let addition = Number(mathArr[0]) + Number(mathArr[(mathArr.length - 1)]);
                       display.innerText = addition;
                       mathArr = [];
                       break;
                       case "-":
-                      let subtraction = Number(mathArr[0]) - Number(mathArr[mathArr.length - 1]);
+                      let subtraction = Number(mathArr[0]) - Number(mathArr[(mathArr.length - 1)]);
                       display.innerText = subtraction;
                       mathArr = [];
                       break;
                       case "x":
-                      let multiplication = Number(mathArr[0]) * Number([mathArr.length - 1]);
+                      let multiplication = Number(mathArr[0]) * Number(mathArr[(mathArr.length - 1)]);
                       display.innerText = multiplication;
                       mathArr = [];
                       break;
                       case "/":
-                      let division = Number(mathArr[0]) / Number([mathArr.length - 1]);
+                      let division = Number(mathArr[0]) / Number(mathArr[(mathArr.length - 1)]);
                       display.innerText = division;
                       mathArr = [];
                       break;
