@@ -248,7 +248,7 @@
           border-bottom: none;
           height: 67px;;
           cursor: pointer;
-
+      }
       /* input */
       input[type=range] {
         -webkit-appearance: none;
