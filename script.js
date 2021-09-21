@@ -96,15 +96,32 @@ keys.forEach(k =>{
       }
       
       if(e.target.classList.contains('equals')){
-        switch(mathArr[1]){
-          
-        }
-      }
-      
-
+                  mathArr.push(displayValue);
+                  switch(mathArr[1]){
+                    case "+":
+                      let addition = Number(mathArr[0]) + Number(mathArr[2]);
+                      display.innerText = addition;
+                      mathArr = [];
+                      break;
+                      case "-":
+                      let subtraction = Number(mathArr[0]) - Number(mathArr[2]);
+                      display.innerText = subtraction;
+                      mathArr = [];
+                      break;
+                      case "x":
+                      let multiplication = Number(mathArr[0]) * Number(mathArr[2]);
+                      display.innerText = multiplication;
+                      mathArr = [];
+                      break;
+                      case "/":
+                      let division = Number(mathArr[0]) / Number(mathArr[2]);
+                      display.innerText = division;
+                      mathArr = [];
+                      break;
+                  }   
+              }
       })
       
-
   })
 
           
