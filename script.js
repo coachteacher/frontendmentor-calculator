@@ -56,90 +56,108 @@ window.onload = function(){
 
 //calculator functionality  
 const calculator = document.querySelector('.calculator-body');
-          const keys = document.querySelectorAll('.key');
-          const operations = document.querySelectorAll('.operation');
-          const display = document.querySelector('.number-output');
-          let mathArr = [];
+          const display = calculator.querySelector('.number-output')
+          const keys = calculator.querySelectorAll('.key');
+          const digits = calculator.querySelectorAll('.digit');
+          const decimal = calculator.querySelector('.decimal');
+          const operatorKey = calculator.querySelectorAll('.operator');
+          const equals = calculator.querySelector('.equals');
+          const delKey = calculator.querySelector('.delete');
+          const resetKey = calculator.querySelector('.reset');
+          let mathArr =[];
 
-          keys.forEach(k =>{
-              k.addEventListener('click', e =>{
-                //variables
-                const key = e.target;
-                const keyValue = key.value;
-                const displayValue = display.innerText; 
-                const currentValue = displayValue;
-                
-
-                //numbers displayed
-                if(e.target.classList.contains('digit')){
-                  if(displayValue === '0'){
-                      display.innerText = keyValue;
-                  }else {
-                      display.innerText = displayValue + keyValue;
-                  }
-                }
-                //handle the operators  
-                if(e.target.classList.contains('operator')){ 
-                    mathArr.push(displayValue); 
-                    mathArr.push(e.target.innerText);
-                    console.log(mathArr);
+        function updateDisplay(e){
+            const displayValue = display.innerText;
+            const key = e.target;
+            const keyValue = key.value;
+            
+                if(displayValue == '0'){
                     display.innerText = keyValue;
+                    decimal.disabled = false;
+                }else if(displayValue === '0' && key.classList.contains('.decimal')){
+                    display.innerText = '0.' + keyValue;
+                }else if(displayValue.includes('.')){
+                    decimal.disabled = true;
+                    display.innerText = displayValue + keyValue;
+                }else{
+                    display.innerText = displayValue + keyValue;
+                    }
+            }
+        function operation(e){
+            const key = e.target;
+            const operator = key.innerText;
+            const displayValue = display.innerText
+
+            decimal.disabled = false;
+            mathArr.push(displayValue);
+            mathArr.push(operator);
+            console.log(mathArr);
+        }
+        function reset(){
+            mathArr=[];
+            display.innerText = '0';
+            decimal.disabled = false;
+        }
+        function backspace(){
+            const displayValue = display.innerText;
+            display.innerText = displayValue.substring(0, [displayValue.length -1]);
+                if(displayValue.length == 1){
+                    display.innerText = '0';
                 }
-               
-                if(e.target.classList.contains('delete')){
-                  display.innerText = displayValue.substring(0, [displayValue.length -1]);
-                }
+        }
+        function newValue(e){
+            display.innerText = e.target.value;
+        }
+        function calculate(){
+            mathArr.push(display.innerText);
+            switch(mathArr[(mathArr.length -2)]){
+                case '+':
+                    let addition = Number(mathArr[0]) + Number(mathArr[(mathArr.length -1)]);
+                    display.innerText = addition;
+                    mathArr = [];
+                    break;
+                case '-':
+                    let subtraction = Number(mathArr[0]) - Number(mathArr[(mathArr.length -1)]);
+                    display.innerText = subtraction;
+                    mathArr = [];
+                    break;
+                case 'x':
+                    let multiplication = Number(mathArr[0]) * Number(mathArr[(mathArr.length -1)]);
+                    display.innerText = multiplication;
+                    mathArr = [];
+                    break;
+                case '/':
+                    let division = Number(mathArr[0]) / Number(mathArr[(mathArr.length -1)]);
+                    display.innerText = division;
+                    mathArr = [];
+                    break;
+            }
+            updateDisplay();
+        }
+        digits.forEach(button =>{
+            button.addEventListener('click', updateDisplay);
+        });
+        
+        decimal.addEventListener('click', ()=>{
+            decimal.disabled = true;
+        });
+        operatorKey.forEach(button =>{
+            button.addEventListener('click', operation);
+            button.addEventListener('blur', newValue);
+        });
+        equals.addEventListener('blur', ()=>{
+            mathArr=[];
+            decimal.disabled = false;
+            
+        })
 
-                if(e.target.classList.contains('reset')){
-                  display.innerText = '0';
-                  mathArr = [];
-                  console.log(mathArr);
-                }
-                
-                if(e.target.classList.contains('equals')){
-                  mathArr.push(displayValue);
-                  switch(mathArr[(mathArr.length -2)]){
-                    case "+":
-                      let addition = Number(mathArr[0]) + Number(mathArr[(mathArr.length - 1)]);
-                      display.innerText = addition;
-                      mathArr = [];
-                      break;
-                      case "-":
-                      let subtraction = Number(mathArr[0]) - Number(mathArr[(mathArr.length - 1)]);
-                      display.innerText = subtraction;
-                      mathArr = [];
-                      break;
-                      case "x":
-                      let multiplication = Number(mathArr[0]) * Number(mathArr[(mathArr.length - 1)]);
-                      display.innerText = multiplication;
-                      mathArr = [];
-                      break;
-                      case "/":
-                      let division = Number(mathArr[0]) / Number(mathArr[(mathArr.length - 1)]);
-                      display.innerText = division;
-                      mathArr = [];
-                      break;
-                  }
-                    
-                }
-                
+        resetKey.addEventListener('click', reset);
+        delKey.addEventListener('click', backspace);
+        equals.addEventListener('click', calculate);
 
-                })
-                
-
-            })
-
-          
-
-        /* 
-        1. only one decimal point per number
-        2. only one operator per operation
-        3. comma at char 4 when value.length >=4, comma at char 8 while value.length >=7 etc. --> but what about decimal places?
-        5. = calculates total, but any operator acts as = once an operator has been selected.
-
-
-*/
-
-
-
+        //TO DO LIST
+        //create new display numbers after calculate()
+        //make calculate after there are two values to math and any operator key is pressed
+        //comma at char 4 when value.length >=4, comma at char 8 while value.length >=7 etc. --> but what about decimal places?
+        //limt the displayValue.length to 12 or so.
 };
